@@ -51,7 +51,7 @@
     var dnav = nav.cloneNode(true);
     var vcta = d.createElement('a');
     vcta.href = 'vendor.html';
-    vcta.className = 'drawer-cta';
+    if (/(^|\/)vendor\.html$/.test(location.pathname)) vcta.className = 'page-on';
     vcta.textContent = 'Vendor Registration';
     dnav.appendChild(vcta);
     drawer.appendChild(dnav);
