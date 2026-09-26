@@ -1,0 +1,61 @@
+name: Apply v10 site edits
+
+on: push
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    if: "github.actor != 'github-actions[bot]'"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 10
+      - name: Rebuild style.css from pre-broken revision and apply edits
+        run: |
+          set -euo pipefail
+          git show 26cd455732e1da419313ea6443226a61125e3f52:assets/css/style.css > assets/css/style.css
+          python3 - <<'PYEOF'
+          css = open('assets/css/style.css').read()
+          css_subs = [
+            (".brand{display:flex;align-items:center;gap:11px;font-weight:800;font-size:17px;letter-spacing:.04em;white-space:nowrap;flex:0 0 auto;}",
+             ".brand{display:flex;align-items:center;gap:14px;font-weight:800;font-size:24px;letter-spacing:.02em;white-space:nowrap;flex:0 0 auto;}"),
+            (".brand img{width:37px;height:37px;border-radius:9px;transition:transform .5s var(--ease);filter:drop-shadow(0 3px 8px rgba(27,26,24,.2));}",
+             ".brand img{width:52px;height:52px;border-radius:13px;transition:transform .5s var(--ease);filter:drop-shadow(0 4px 10px rgba(27,26,24,.22));}"),
+            ("gap:20px;padding:16px 0;transition:padding .35s var(--ease);min-width:0;}",
+             "gap:20px;padding:21px 0;transition:padding .35s var(--ease);min-width:0;}"),
+            ("header.scrolled .nav{padding:11px 0;}",
+             "header.scrolled .nav{padding:13px 0;}"),
+            ("html{scroll-behavior:smooth;scroll-padding-top:96px;}",
+             "html{scroll-behavior:smooth;scroll-padding-top:104px;}"),
+            ("  .brand{font-size:14px;}\n  .brand{font-size:15px;}\n  .brand img{width:32px;height:32px;}",
+             "  .brand{font-size:18px;letter-spacing:.01em;}\n  .brand img{width:40px;height:40px;border-radius:11px;}"),
+          ]
+          for old, new in css_subs:
+              assert css.count(old) == 1, 'CSS MISS: ' + old[:60]
+              css = css.replace(old, new)
+          open('assets/css/style.css', 'w').write(css)
+          ven = open('vendor.html').read()
+          ven_subs = [
+            ("Thank you for registering with InfiSource Global. Our procurement team will verify your details and reach out with next steps - typically within 2-3 working days.",
+             "Thank you for registering with InfiSource Global. Our team has received your details and will reach out with next steps."),
+            ("<li><b>Verification</b> - we validate your GST and category fit (2-3 working days).</li>",
+             "<li><b>Review</b> - we go through your details and category fit.</li>"),
+          ]
+          for old, new in ven_subs:
+              assert ven.count(old) == 1, 'VENDOR MISS: ' + old[:60]
+              ven = ven.replace(old, new)
+          open('vendor.html', 'w').write(ven)
+          print('edits applied OK')
+          PYEOF
+      - name: Commit updated files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then echo "No changes"; else
+            git commit -m "Apply brand enlargement and vendor text updates"
+            git push
+          fi
