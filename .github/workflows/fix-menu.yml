@@ -27,15 +27,18 @@ jobs:
               css = css.replace(old, new)
           open('assets/css/style.css', 'w').write(css)
           js = open('assets/js/shared.js').read()
-          js_old = "    var drawer = d.createElement('div'); drawer.className = 'drawer';\n    drawer.appendChild(nav.cloneNode(true));"
-          js_new = """    var drawer = d.createElement('div'); drawer.className = 'drawer';
-    var dnav = nav.cloneNode(true);
-    var vcta = d.createElement('a');
-    vcta.href = 'vendor.html';
-    vcta.className = 'drawer-cta';
-    vcta.textContent = 'Vendor Registration';
-    dnav.appendChild(vcta);
-    drawer.appendChild(dnav);"""
+          js_old = '\n'.join([
+              "    var drawer = d.createElement('div'); drawer.className = 'drawer';",
+              "    drawer.appendChild(nav.cloneNode(true));"])
+          js_new = '\n'.join([
+              "    var drawer = d.createElement('div'); drawer.className = 'drawer';",
+              "    var dnav = nav.cloneNode(true);",
+              "    var vcta = d.createElement('a');",
+              "    vcta.href = 'vendor.html';",
+              "    vcta.className = 'drawer-cta';",
+              "    vcta.textContent = 'Vendor Registration';",
+              "    dnav.appendChild(vcta);",
+              "    drawer.appendChild(dnav);"])
           assert js.count(js_old) == 1, 'JS MISS'
           js = js.replace(js_old, js_new)
           open('assets/js/shared.js', 'w').write(js)
