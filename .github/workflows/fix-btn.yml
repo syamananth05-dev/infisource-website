@@ -1,0 +1,46 @@
+name: Fix light-bg outline buttons
+
+on: push
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    if: "github.actor != 'github-actions[bot]'"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply on-light button variant
+        run: |
+          set -euo pipefail
+          python3 - <<'PYEOF'
+          css = open('assets/css/style.css').read()
+          old_css = '.btn-outline:hover{border-color:rgba(255,255,255,.65);background:rgba(255,255,255,.1);}'
+          new_css = '.btn-outline:hover{border-color:rgba(255,255,255,.65);background:rgba(255,255,255,.1);}\n.btn-outline.on-light{border-color:rgba(27,26,24,.3);color:var(--ink);background:var(--white);\n  -webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:0 10px 22px -14px rgba(27,26,24,.28);}\n.btn-outline.on-light:hover{border-color:var(--orange);color:var(--orange-deep);background:var(--orange-tint);transform:translateY(-2px);}\n.btn-outline.on-light::after{display:none;}'
+          assert css.count(old_css) == 1, 'CSS MISS'
+          css = css.replace(old_css, new_css)
+          open('assets/css/style.css', 'w').write(css)
+          html_fixes = [
+            ('index.html', '<a href="services.html" class="btn-outline">Open the Full Category Explorer</a>',
+                           '<a href="services.html" class="btn-outline on-light">Open the Full Category Explorer</a>'),
+            ('about.html', '<a href="vendor.html" class="btn-outline">Register as a Vendor</a>',
+                           '<a href="vendor.html" class="btn-outline on-light">Register as a Vendor</a>'),
+            ('vendor.html', '<a href="services.html" class="btn-outline">Explore Our Categories</a>',
+                           '<a href="services.html" class="btn-outline on-light">Explore Our Categories</a>'),
+          ]
+          for fn, old, new in html_fixes:
+              c = open(fn).read()
+              assert c.count(old) == 1, fn + ' MISS'
+              open(fn, 'w').write(c.replace(old, new))
+          print('button fix applied OK')
+          PYEOF
+      - name: Commit updated files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then echo "No changes"; else
+            git commit -m "Fix invisible outline buttons on light backgrounds"
+            git push
+          fi
