@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vendor Registration | InfiSource Global Private Limited</title>
+<meta name="description" content="Register as a vendor with InfiSource Global - one 10-minute form covering GST, MSME, categories served, payment terms and your product catalogue.">
+<link rel="icon" type="image/png" href="assets/img/favicon.png">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="vendor-page">
+<img src="assets/img/logo.webp" class="pl-src" alt="" hidden>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="index.html" style="text-decoration:none"><img src="assets/img/logo.webp" alt="InfiSource Global logo"><span>INFISOURCE <span class="accent">GLOBAL</span></span></a>
+    <nav class="links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Categories</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a href="vendor.html" class="btn">Vendor Registration</a>
+  </div>
+</header>
+<section class="page-hero">
+  <div class="wrap">
+    <div class="eyebrow">Vendor Registration</div>
+    <h1>Become an InfiSource Supplier</h1>
+    <p class="lede">One short form covers everything we need to onboard you. Keep your documents ready and it takes under 10 minutes &mdash; your progress is saved automatically as you type.</p>
+    <div class="badge-row"><span class="pill">Under 10 minutes</span><span class="pill">Autosaves as you type</span><span class="pill">GST-ready validation</span></div>
+  </div>
+</section>
+
+<section id="ready" style="padding:0 0 clamp(40px,6vw,64px);">
+  <div class="wrap">
+    <div class="section-head" style="margin-bottom:0;">
+      <div class="section-eyebrow">Before You Start</div>
+      <h2 style="font-size:clamp(21px,2.4vw,27px);">Keep These Handy</h2>
+      <p style="max-width:620px;">Not required to begin &mdash; but having them ready means you finish in one sitting.</p>
+    </div>
+    <div class="ready-grid">
+      <div class="r-item"><div class="ri"><svg viewBox="0 0 24 24" class="ic-svg"><path d="M4 8.3h16v11.4H4z"/><path d="M8.5 8.3V6.2a3.5 3.5 0 0 1 7 0v2.1"/></svg></div><div><b>GST Number</b><span>Your 15-character GSTIN (we validate the format instantly)</span></div></div>
+      <div class="r-item"><div class="ri"><svg viewBox="0 0 24 24" class="ic-svg"><path d="M12 3l7.5 3v5.6c0 5.1-3.4 8.6-7.5 9.4-4.1-.8-7.5-4.3-7.5-9.4V6l7.5-3z"/></svg></div><div><b>Udyam / MSME Number</b><span>Only if you are MSME-registered (unlocks preference benefits)</span></div></div>
+      <div class="r-item"><div class="ri"><svg viewBox="0 0 24 24" class="ic-svg"><path d="M6 8V3h12v5"/><rect x="4" y="8" width="16" height="8" rx="1.3"/><rect x="7" y="14" width="10" height="7"/></svg></div><div><b>Authorisation Certificates</b><span>Dealership / distributor certificates, if you are an authorised partner</span></div></div>
+      <div class="r-item"><div class="ri"><svg viewBox="0 0 24 24" class="ic-svg"><path d="M3 7.2 12 3l9 4.2-9 4.2-9-4.2z"/><path d="M3 7.2v9.6L12 21l9-4.2V7.2"/><path d="M12 11.4V21"/></svg></div><div><b>Product Catalogue</b><span>A PDF or images - or simply paste your key product list</span></div></div>
+    </div>
+  </div>
+</section><section id="register" style="padding:clamp(10px,3vw,40px) 0 clamp(80px,10vw,120px);">
+  <div class="wrap">
+    <div class="vf-layout">
+      <div>
+        <div id="vf-success" class="vf-success">
+          <div class="ok"><svg viewBox="0 0 24 24" style="width:36px;height:36px;stroke:currentColor;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round"><path d="M4.5 12.5l5 5L19.5 6.5"/></svg></div>
+          <h2>Registration Received</h2>
+          <p id="vf-succ-note">Thank you for registering with InfiSource Global. Our procurement team will verify your details and reach out with next steps - typically within 2-3 working days.</p>
+          <div class="btn-row">
+            <a href="index.html" class="btn">Back to Home</a>
+            <a href="services.html" class="btn-outline">Explore Our Categories</a>
+          </div>
+        </div>
+        <form id="vform" novalidate>
+
+          <div class="vf-card">
+            <div class="vf-step-h"><div class="n">1</div><div><h3>Company Profile</h3><div class="t">The basics of your business</div></div></div>
+            <div class="vf-grid">
+              <div class="field full"><label>Registered Company Name <span class="req">*</span></label><input class="vf-in" type="text" name="company_name" required autocomplete="organization" placeholder="e.g. XYZ Traders Private Limited"></div>
+              <div class="field"><label>Trade / Brand Name</label><input class="vf-in" type="text" name="brand_name" placeholder="If different from legal name"></div>
+              <div class="field"><label>Year Established</label><input class="vf-in" type="number" name="year_est" min="1900" max="2026" placeholder="e.g. 2015"></div>
+              <div class="field"><label>Business Entity Type <span class="req">*</span></label>
+                <select class="vf-in" name="entity_type" required>
+                  <option value="">Select...</option>
+                  <option>Proprietorship</option><option>Partnership</option><option>Private Limited</option>
+                  <option>Public Limited</option><option>LLP</option><option>Other</option>
+                </select></div>
+              <div class="field"><label>Company Website</label><input class="vf-in" type="text" name="website" placeholder="https://..."></div>
+            </div>
+          </div>
+
+          <div class="vf-card">
+            <div class="vf-step-h"><div class="n">2</div><div><h3>Business Type</h3><div class="t">Select all that apply</div></div></div>
+            <div class="checks">
+            <label class="chk"><input type="checkbox" name="business_types" value="OEM Manufacturer"><span><span class="cl">OEM Manufacturer</span><span class="cs">You manufacture your own products</span></span></label>
+            <label class="chk"><input type="checkbox" name="business_types" value="Authorized Dealer"><span><span class="cl">Authorized Dealer</span><span class="cs">You resell under a dealership authorisation</span></span></label>
+            <label class="chk"><input type="checkbox" name="business_types" value="Authorized Distributor"><span><span class="cl">Authorized Distributor</span><span class="cs">You distribute for brands officially</span></span></label>
+            <label class="chk"><input type="checkbox" name="business_types" value="Wholesaler / Stockist"><span><span class="cl">Wholesaler / Stockist</span><span class="cs">You hold and move bulk stock</span></span></label>
+            <label class="chk"><input type="checkbox" name="business_types" value="Trader / Reseller"><span><span class="cl">Trader / Reseller</span><span class="cs">You source and supply to order</span></span></label>
+            <label class="chk"><input type="checkbox" name="business_types" value="Importer"><span><span class="cl">Importer</span><span class="cs">You import and supply in India</span></span></label>
+            <label class="chk"><input type="checkbox" name="business_types" value="Service Provider"><span><span class="cl">Service Provider</span><span class="cs">You deliver services (e.g. landscaping, AMC)</span></span></label>
+            <label class="chk"><input type="checkbox" name="business_types" value="Other"><span><span class="cl">Other</span><span class="cs">Something else - tell us in the notes</span></span></label>
+            </div>
+            <div class="field full" style="margin-top:14px;"><label>If &ldquo;Other&rdquo;, describe your business</label><input class="vf-in" type="text" name="business_other" placeholder="Optional"></div>
+          </div>
+
+          <div class="vf-card">
+            <div class="vf-step-h"><div class="n">3</div><div><h3>Contact & Location</h3><div class="t">Who we talk to, and where you operate</div></div></div>
+            <div class="vf-grid">
+              <div class="field"><label>Contact Person <span class="req">*</span></label><input class="vf-in" type="text" name="contact_name" required autocomplete="name"></div>
+              <div class="field"><label>Designation <span class="req">*</span></label><input class="vf-in" type="text" name="designation" required placeholder="e.g. Owner / Sales Manager"></div>
+              <div class="field"><label>Mobile / WhatsApp <span class="req">*</span></label><input class="vf-in" type="tel" name="mobile" required autocomplete="tel" placeholder="10-digit mobile"></div>
+              <div class="field"><label>Email <span class="req">*</span></label><input class="vf-in" type="email" name="email" required autocomplete="email"></div>
+              <div class="field full"><label>Registered Address <span class="req">*</span></label><textarea class="vf-in" name="address" rows="2" required autocomplete="street-address"></textarea></div>
+              <div class="field"><label>City <span class="req">*</span></label><input class="vf-in" type="text" name="city" required></div>
+              <div class="field"><label>State <span class="req">*</span></label>
+                <select class="vf-in" name="state" required><option value="">Select...</option>
+<option>Andhra Pradesh</option>
+<option>Arunachal Pradesh</option>
+<option>Assam</option>
+<option>Bihar</option>
+<option>Chhattisgarh</option>
+<option>Delhi</option>
+<option>Goa</option>
+<option>Gujarat</option>
+<option>Haryana</option>
+<option>Himachal Pradesh</option>
+<option>Jammu & Kashmir</option>
+<option>Jharkhand</option>
+<option>Karnataka</option>
+<option>Kerala</option>
+<option>Madhya Pradesh</option>
+<option>Maharashtra</option>
+<option>Manipur</option>
+<option>Meghalaya</option>
+<option>Mizoram</option>
+<option>Nagaland</option>
+<option>Odisha</option>
+<option>Puducherry</option>
+<option>Punjab</option>
+<option>Rajasthan</option>
+<option>Sikkim</option>
+<option>Tamil Nadu</option>
+<option>Telangana</option>
+<option>Tripura</option>
+<option>Uttar Pradesh</option>
+<option>Uttarakhand</option>
+<option>West Bengal</option>
+<option>Other</option>
+                </select></div>
+              <div class="field"><label>PIN Code <span class="req">*</span></label><input class="vf-in" type="text" name="pincode" required inputmode="numeric" maxlength="6" placeholder="6-digit PIN"></div>
+            </div>
+          </div>
+
+          <div class="vf-card">
+            <div class="vf-step-h"><div class="n">4</div><div><h3>Registrations & Compliance</h3><div class="t">GST number is enough - certificates are welcome but optional</div></div></div>
+            <div class="vf-grid">
+              <div class="field full"><label>GST Number (GSTIN) <span class="req">*</span></label>
+                <input class="vf-in" type="text" name="gstin" id="gstin" required maxlength="15" placeholder="e.g. 36ABCDE1234F1Z5" style="text-transform:uppercase">
+                <span class="hint">Format-checked instantly. GST certificate optional below.</span></div>
+              <div class="field"><label>PAN Number</label><input class="vf-in" type="text" name="pan" maxlength="10" placeholder="Optional" style="text-transform:uppercase"></div>
+              <div class="field"><label>Other Certifications</label><input class="vf-in" type="text" name="other_certs" placeholder="e.g. ISO 9001, ISI (optional)"></div>
+              <div class="field full"><label>Are you MSME / Udyam registered?</label>
+                <div class="radio-row">
+                  <label class="chk"><input type="radio" name="msme" value="Yes" id="msme_yes"><span class="cl">Yes</span></label>
+                  <label class="chk"><input type="radio" name="msme" value="No"><span class="cl">No</span></label>
+                </div></div>
+              <div class="field full" id="msme-block" style="display:none;">
+                <label>Udyam Registration Number</label><input class="vf-in" type="text" name="udyam_no" placeholder="e.g. UDYAM-XX-00-0000000">
+                <div class="file-list-wrap" style="margin-top:9px;">
+                  <div class="file-zone" id="msme-zone"><div class="fz-t">Upload MSME / Udyam certificate</div><div class="fz-s">PDF or image &middot; optional &middot; up to 8 MB</div></div>
+                  <div class="file-list" id="msme-list"></div>
+                </div>
+              </div>
+              <div class="field full" id="deal-block" style="display:none;">
+                <label>Authorised Dealer / Distributor Certificate</label>
+                <div class="file-zone" id="deal-zone"><div class="fz-t">Upload authorisation certificate</div><div class="fz-s">PDF or image &middot; for dealers & distributors &middot; up to 8 MB</div></div>
+                <div class="file-list" id="deal-list"></div>
+              </div>
+              <div class="field full">
+                <label>GST Certificate (optional)</label>
+                <div class="file-zone" id="gstc-zone"><div class="fz-t">Upload GST certificate</div><div class="fz-s">PDF or image &middot; optional &middot; up to 8 MB</div></div>
+                <div class="file-list" id="gstc-list"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="vf-card">
+            <div class="vf-step-h"><div class="n">5</div><div><h3>Categories You Supply</h3><div class="t">Select every category you can serve - multiple selections welcome</div></div></div>
+            <div class="checks three">
+            <label class="chk"><input type="checkbox" name="categories" value="mep-solutions"><span><span class="cl">MEP Solutions</span><span class="cs">LED Lighting, Switches & Sockets, Cables & Wires...</span></span></label>
+            <label class="chk"><input type="checkbox" name="categories" value="facility-maintenance"><span><span class="cl">Facility Maintenance</span><span class="cs">Hand & Power Tools, Fasteners, Adhesives & Sealants...</span></span></label>
+            <label class="chk"><input type="checkbox" name="categories" value="safety-and-fire-protection"><span><span class="cl">Safety & Fire Protection</span><span class="cs">Safety Shoes, Helmets & Gloves, Reflective Jackets...</span></span></label>
+            <label class="chk"><input type="checkbox" name="categories" value="hvac-and-air-quality"><span><span class="cl">HVAC & Air Quality</span><span class="cs">Split & Cassette ACs, Ventilation Fans, Air Purifiers...</span></span></label>
+            <label class="chk"><input type="checkbox" name="categories" value="security-and-access-control"><span><span class="cl">Security & Access Control</span><span class="cs">CCTV Cameras, Biometric Devices, Access Control Systems...</span></span></label>
+            <label class="chk"><input type="checkbox" name="categories" value="stationery-and-office-supplies"><span><span class="cl">Stationery & Office Supplies</span><span class="cs">A4 Copier Paper, Pens & Markers, Notebooks & Registers...</span></span></label>
+            <label class="chk"><input type="checkbox" name="categories" value="housekeeping"><span><span class="cl">Housekeeping</span><span class="cs">Cleaning Chemicals, Tissue Papers, Garbage Bins...</span></span></label>
+            <label class="chk"><input type="checkbox" name="categories" value="pantry-and-cafeteria"><span><span class="cl">Pantry & Cafeteria</span><span class="cs">Tea & Coffee, Vending Supplies, Biscuits & Snacks...</span></span></label>
+            <label class="chk"><input type="checkbox" name="categories" value="office-furniture"><span><span class="cl">Office Furniture</span><span class="cs">Office & Executive Chairs, Workstations, Storage Cabinets...</span></span></label>
+            <label class="chk"><input type="checkbox" name="categories" value="office-appliances"><span><span class="cl">Office Appliances</span><span class="cs">Refrigerators, Microwave Ovens, Water Dispensers...</span></span></label>
+            <label class="chk"><input type="checkbox" name="categories" value="it-and-networking"><span><span class="cl">IT & Networking</span><span class="cs">Laptops & Desktops, Printers & Scanners, Networking Products...</span></span></label>
+            <label class="chk"><input type="checkbox" name="categories" value="av-and-meeting-rooms"><span><span class="cl">AV & Meeting Rooms</span><span class="cs">Projectors, Interactive Panels, Video Conferencing Systems...</span></span></label>
+            <label class="chk"><input type="checkbox" name="categories" value="printing-and-branding"><span><span class="cl">Printing & Branding</span><span class="cs">Digital & Offset Printing, Signage & Standees, Branding Collateral...</span></span></label>
+            <label class="chk"><input type="checkbox" name="categories" value="gifting-and-uniforms"><span><span class="cl">Gifting & Uniforms</span><span class="cs">Gift Sets, Onboarding Kits, Uniforms & Apparel...</span></span></label>
+            <label class="chk"><input type="checkbox" name="categories" value="packaging-and-storage"><span><span class="cl">Packaging & Storage</span><span class="cs">Corrugated Boxes, Packing Tape, Bubble & Stretch Wrap...</span></span></label>
+            <label class="chk"><input type="checkbox" name="categories" value="plants-and-landscaping"><span><span class="cl">Plants & Landscaping</span><span class="cs">Indoor Plants & Planters, Landscaping Services, Planters & Pots...</span></span></label>
+            <label class="chk"><input type="checkbox" name="categories" value="recreation-and-engagement"><span><span class="cl">Recreation & Engagement</span><span class="cs">Foosball & Snooker Tables, Table Tennis, Carrom & Board Games...</span></span></label>
+            <label class="chk"><input type="checkbox" name="categories" value="sustainability"><span><span class="cl">Sustainability</span><span class="cs">Recycled Paper Products, Biodegradable Packaging, Solar Solutions...</span></span></label>
+            </div>
+            <div class="field full" style="margin-top:14px;"><label>Other categories / specialities</label><input class="vf-in" type="text" name="other_categories" placeholder="Anything not listed above"></div>
+          </div>
+
+          <div class="vf-card">
+            <div class="vf-step-h"><div class="n">6</div><div><h3>Commercial Terms</h3><div class="t">So we match you with the right kind of orders</div></div></div>
+            <div class="vf-grid">
+              <div class="field"><label>Payment Terms You Accept <span class="req">*</span></label>
+                <select class="vf-in" name="payment_terms" required>
+                  <option value="">Select...</option>
+                  <option>Advance payment</option>
+                  <option>15 days credit</option>
+                  <option>30 days credit</option>
+                  <option>45 days credit</option>
+                  <option>60 days credit</option>
+                  <option>Negotiable per order</option>
+                </select>
+                <span class="hint">InfiSource typically works on 30-45 day credit terms with verified vendors.</span></div>
+              <div class="field"><label>Typical Delivery / Lead Time <span class="req">*</span></label>
+                <select class="vf-in" name="lead_time" required>
+                  <option value="">Select...</option>
+                  <option>Same day - 2 days</option>
+                  <option>3 - 5 days</option>
+                  <option>1 - 2 weeks</option>
+                  <option>2 - 4 weeks</option>
+                  <option>Varies by product</option>
+                </select></div>
+              <div class="field"><label>Annual Turnover Range</label>
+                <select class="vf-in" name="turnover">
+                  <option value="">Prefer not to say</option>
+                  <option>Under Rs 25 Lakh</option><option>Rs 25 Lakh - 1 Crore</option>
+                  <option>Rs 1 - 5 Crore</option><option>Rs 5 - 25 Crore</option>
+                  <option>Above Rs 25 Crore</option>
+                </select></div>
+              <div class="field"><label>Key Clients / References</label><input class="vf-in" type="text" name="key_clients" placeholder="Optional"></div>
+            </div>
+          </div>
+
+          <div class="vf-card">
+            <div class="vf-step-h"><div class="n">7</div><div><h3>Catalogue & Products</h3><div class="t">Upload a catalogue, paste your product list, or both</div></div></div>
+            <div class="field">
+              <div class="file-zone" id="catalog-zone"><div class="fz-t">Upload product catalogue</div><div class="fz-s">PDF, images or spreadsheet &middot; up to 6 files &middot; 10 MB each &middot; or paste your list below</div></div>
+              <div class="file-list" id="catalog-list"></div>
+            </div>
+            <div class="field full" style="margin-top:16px;"><label>Or Paste Your Key Product List</label>
+              <textarea class="vf-in" name="products_text" rows="4" placeholder="One product or range per line - e.g.
+LED panel lights 18W-40W
+Modular switches & sockets
+Copper cable 1.5-25 sqmm"></textarea></div>
+          </div>
+
+          <div class="vf-card">
+            <div class="vf-step-h"><div class="n">✓</div><div><h3>Declaration</h3><div class="t">Almost done</div></div></div>
+            <label class="declare"><input type="checkbox" id="declaration" name="declaration" value="Agreed">
+              <span>I confirm that the information provided is accurate to the best of my knowledge, and I agree to be contacted by InfiSource Global Private Limited regarding vendor onboarding, order requirements and payment terms.</span></label>
+            <div class="vf-submit-row" style="margin-top:26px;">
+              <button type="submit" class="btn btn-big" id="vf-submit">Submit Registration</button>
+            </div>
+            <div class="vf-note">Takes under 10 minutes with documents ready &middot; your progress is saved automatically &middot; <button type="button" id="draft-clear" style="background:none;border:none;color:var(--orange-deep);font:inherit;cursor:pointer;text-decoration:underline;">clear saved draft</button></div>
+          </div>
+
+        </form>
+      </div>
+
+      <aside id="vf-rail">
+        <div class="vf-rail">
+          <div class="rail-card light">
+            <h4>Your Progress</h4>
+            <div class="rp-bar"><i id="rp-bar"></i></div>
+            <div class="rp-t" id="rp-text">0% complete - about 10 min left</div>
+          </div>
+          <div class="rail-card">
+            <h4>Why Register</h4>
+            <ul class="rail-list">
+              <li><b>Reach corporate buyers</b> across IT, manufacturing, hospitals, education and more.</li>
+              <li><b>18 active categories</b> means repeat business well beyond one product line.</li>
+              <li><b>One registration</b> covers every future RFQ - no repeat paperwork.</li>
+              <li><b>MSME vendors</b> are prioritised in applicable categories.</li>
+            </ul>
+          </div>
+          <div class="rail-card">
+            <h4>What Happens Next</h4>
+            <ul class="rail-list">
+              <li><b>Verification</b> - we validate your GST and category fit (2-3 working days).</li>
+              <li><b>Onboarding call</b> - we align on pricing, payment and delivery terms.</li>
+              <li><b>RFQs begin</b> - your profile is matched to live requirements.</li>
+            </ul>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <img src="assets/img/logo.webp" alt="InfiSource Global logo">
+        <div class="fb-name">INFISOURCE GLOBAL</div>
+        <p>Your workplace procurement and facility solutions partner - one accountable relationship across every category.</p>
+      </div>
+      <div>
+        <div class="foot-h">Company</div>
+        <div class="foot-links">
+          <a href="index.html">Home</a>
+          <a href="about.html">About Us</a>
+          <a href="services.html">Categories</a>
+          <a href="contact.html">Contact</a>
+          <a href="vendor.html">Vendor Registration</a>
+        </div>
+      </div>
+      <div>
+        <div class="foot-h">Sourcing Categories</div>
+        <div class="foot-cats">
+        <a href="services.html#cat-mep-solutions">MEP Solutions</a>
+        <a href="services.html#cat-facility-maintenance">Facility Maintenance</a>
+        <a href="services.html#cat-safety-and-fire-protection">Safety & Fire Protection</a>
+        <a href="services.html#cat-hvac-and-air-quality">HVAC & Air Quality</a>
+        <a href="services.html#cat-security-and-access-control">Security & Access Control</a>
+        <a href="services.html#cat-stationery-and-office-supplies">Stationery & Office Supplies</a>
+        <a href="services.html#cat-housekeeping">Housekeeping</a>
+        <a href="services.html#cat-pantry-and-cafeteria">Pantry & Cafeteria</a>
+        <a href="services.html#cat-office-furniture">Office Furniture</a>
+        <a href="services.html#cat-office-appliances">Office Appliances</a>
+        <a href="services.html#cat-it-and-networking">IT & Networking</a>
+        <a href="services.html#cat-av-and-meeting-rooms">AV & Meeting Rooms</a>
+        <a href="services.html#cat-printing-and-branding">Printing & Branding</a>
+        <a href="services.html#cat-gifting-and-uniforms">Gifting & Uniforms</a>
+        <a href="services.html#cat-packaging-and-storage">Packaging & Storage</a>
+        <a href="services.html#cat-plants-and-landscaping">Plants & Landscaping</a>
+        <a href="services.html#cat-recreation-and-engagement">Recreation & Engagement</a>
+        <a href="services.html#cat-sustainability">Sustainability</a>
+        </div>
+      </div>
+      <div class="foot-contact">
+        <div class="foot-h">Get In Touch</div>
+        <p>Email<br><a href="mailto:sales@infisourceglobal.in">sales@infisourceglobal.in</a></p>
+        <p>Location<br>Hyderabad, Telangana, India</p>
+        <p>Suppliers<br><a href="vendor.html">Register as a vendor</a></p>
+      </div>
+    </div>
+    <div class="foot-note">
+      <div>&copy; 2026 InfiSource Global Private Limited. All rights reserved.</div>
+      <div>Hyderabad &middot; Telangana &middot; India</div>
+    </div>
+  </div>
+</footer>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/shared.js"></script>
+<script src="assets/js/forms.js"></script>
+</body>
+</html>
