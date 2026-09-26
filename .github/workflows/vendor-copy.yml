@@ -1,0 +1,46 @@
+name: Orange explorer CTA and vendor copy
+
+on: push
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    if: "github.actor != 'github-actions[bot]'"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply button and copy edits
+        run: |
+          set -euo pipefail
+          python3 - <<'PYEOF'
+          subs = {
+            'index.html': [
+              ('<a href="services.html" class="btn-outline on-light">Open the Full Category Explorer</a>',
+               '<a href="services.html" class="btn">Open the Full Category Explorer</a>'),
+              ('One short registration puts you in front of corporate buyers across all 18 categories.',
+               'One short registration connects your products to recurring, multi-category demand across India.'),
+            ],
+            'vendor.html': [
+              ('<li><b>Reach corporate buyers</b> across IT, manufacturing, hospitals, education and more.</li>',
+               '<li><b>Grow through recurring orders</b> across IT, manufacturing, hospitals, education and more.</li>'),
+            ],
+          }
+          for fn, pairs in subs.items():
+              c = open(fn).read()
+              for old, new in pairs:
+                  assert c.count(old) == 1, fn + ' MISS'
+                  c = c.replace(old, new)
+              open(fn, 'w').write(c)
+          print('edits applied OK')
+          PYEOF
+      - name: Commit updated files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then echo "No changes"; else
+            git commit -m "Orange explorer CTA; remove corporate-buyer pitch from vendor copy"
+            git push
+          fi
