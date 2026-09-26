@@ -1,0 +1,31 @@
+name: Restore site files
+
+on: push
+
+permissions:
+  contents: write
+
+jobs:
+  restore:
+    if: "!contains(github.event.head_commit.message, 'Restore site files')"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Unpack site archive
+        run: |
+          set -euo pipefail
+          curl -fsSL https://github.com/${{ github.repository }}/releases/download/site-assets/site.zip -o /tmp/site.zip
+          unzip -oq /tmp/site.zip -d /tmp/site
+          SRC="$(dirname "$(find /tmp/site -name index.html | head -1)")"
+          cp -r "$SRC"/. .
+          touch .nojekyll
+          rm -rf /tmp/site.zip /tmp/site
+      - name: Commit restored files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then echo "No changes"; else
+            git commit -m "Restore site files"
+            git push
+          fi
