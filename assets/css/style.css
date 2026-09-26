@@ -101,6 +101,8 @@ body.menu-open .drawer{display:block;}
 .drawer nav a{padding:13px 2px;font-weight:700;font-size:15px;border-bottom:1px solid var(--line);color:var(--grey-700);}
 .drawer nav a:last-child{border-bottom:none;}
 .drawer nav a:hover{color:var(--orange);}
+.drawer nav a.drawer-cta{margin-top:12px;background:var(--orange);color:#fff;font-weight:800;border-bottom:none;border-radius:12px;padding:13px 10px;text-align:center;letter-spacing:.04em;text-transform:uppercase;font-size:12.5px;box-shadow:0 10px 20px -8px rgba(237,112,20,.5);}
+.drawer nav a.drawer-cta:hover{background:var(--orange-deep);color:#fff;transform:translateY(-1px);}
 
 /* ============ hero ============ */
 .hero{position:relative;overflow:hidden;color:#fff;
@@ -400,7 +402,7 @@ footer{background:var(--ink);color:var(--grey-500);padding:36px 0;font-size:12.5
   .ind-grid{grid-template-columns:repeat(3,1fr);}
 }
 @media(max-width:1060px){
-  nav.links{display:none;}
+  .nav>nav.links{display:none;}
   .burger{display:block;}
   .hero-mark{display:none;}
 }

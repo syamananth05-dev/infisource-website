@@ -48,7 +48,13 @@
     for (var b = 0; b < 3; b++) burger.appendChild(d.createElement('span'));
     d.querySelector('.nav').appendChild(burger);
     var drawer = d.createElement('div'); drawer.className = 'drawer';
-    drawer.appendChild(nav.cloneNode(true));
+    var dnav = nav.cloneNode(true);
+    var vcta = d.createElement('a');
+    vcta.href = 'vendor.html';
+    vcta.className = 'drawer-cta';
+    vcta.textContent = 'Vendor Registration';
+    dnav.appendChild(vcta);
+    drawer.appendChild(dnav);
     header.appendChild(drawer);
     burger.addEventListener('click', function(){ d.body.classList.toggle('menu-open'); });
     drawer.addEventListener('click', function(e){ if (e.target && e.target.tagName === 'A') d.body.classList.remove('menu-open'); });
