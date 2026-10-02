@@ -69,3 +69,17 @@ html[data-theme="dark"] .theme-btn .i-moon{display:block;}
 @media(max-width:520px){.theme-btn{margin-right:9px;width:38px;height:38px;}.theme-btn svg{width:17px;height:17px;}}
 @media(max-width:420px){.nav{gap:14px;}.theme-btn{width:34px;height:34px;margin-right:0;}.theme-btn svg{width:16px;height:16px;}}
 @media(max-width:380px){.nav{gap:11px;}.brand{font-size:16px;gap:9px;}.brand img{width:34px;height:34px;}.burger{width:38px;height:38px;}}
+
+/* ---------- hamburger menu on every device ---------- */
+.burger{display:block;}
+.nav>nav.links{display:none;}
+.drawer{padding:18px 28px 26px;max-height:calc(100vh - 96px);overflow:auto;}
+.drawer nav{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:1fr;gap:10px;}
+@media(min-width:641px) and (max-width:1023px){
+  .drawer nav{grid-template-columns:1fr 1fr;gap:11px;}
+  .drawer nav a:last-child{grid-column:1 / -1;}
+}
+@media(min-width:1024px){
+  .drawer nav{grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;}
+  .drawer nav a{font-size:15px;padding:14px 15px;}
+}
