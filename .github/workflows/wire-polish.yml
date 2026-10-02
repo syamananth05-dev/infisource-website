@@ -1,0 +1,32 @@
+name: Wire polish and night mode
+on: push
+permissions:
+  contents: write
+jobs:
+  apply:
+    if: "github.actor != 'github-actions[bot]'"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Wire assets into pages
+        run: |
+          set -euo pipefail
+          python3 - <<'PYEOF'
+          import io
+          link = '<link rel="stylesheet" href="assets/css/style.css">'
+          new = link + chr(10) + '<link rel="stylesheet" href="assets/css/polish.css">' + chr(10) + '<script src="assets/js/night.js"></script>'
+          for f in ['index.html', 'about.html', 'services.html', 'contact.html', 'vendor.html']:
+              c = io.open(f, encoding='utf-8').read()
+              assert c.count(link) == 1 and 'polish.css' not in c, f
+              io.open(f, 'w', encoding='utf-8').write(c.replace(link, new))
+          print('wired')
+          PYEOF
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then echo "No changes"; else
+            git commit -m "Wire polish.css and night.js into all pages"
+            git push
+          fi
