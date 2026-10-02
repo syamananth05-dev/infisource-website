@@ -1,0 +1,51 @@
+name: Footer brand fix
+on: push
+permissions:
+  contents: write
+jobs:
+  apply:
+    if: "github.actor != 'github-actions[bot]'"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Pillow
+        run: pip install --quiet pillow
+      - name: Rebuild footer brand block
+        run: |
+          set -euo pipefail
+          python3 - <<'PYEOF'
+          import io
+          from PIL import Image
+          def rep(fn, pairs):
+              c = io.open(fn, encoding='utf-8').read()
+              for o, n in pairs:
+                  assert c.count(o) == 1, fn + ' MISS ' + o[:60]
+                  c = c.replace(o, n)
+              io.open(fn, 'w', encoding='utf-8').write(c)
+          im = Image.open('assets/img/logo.webp').convert('RGBA')
+          bb = im.getchannel('A').getbbox()
+          mark = im.crop(bb)
+          w, h = mark.size
+          mark = mark.resize((800, int(round(h * 800.0 / w))), Image.LANCZOS)
+          mark.save('assets/img/logo-mark.webp', 'WEBP', quality=95, method=6)
+          print('logo-mark.webp', mark.size)
+          css_old1 = '.foot-brand{display:flex;align-items:center;gap:11px;}\n.foot-brand img{width:30px;height:30px;opacity:.92;filter:drop-shadow(0 4px 10px rgba(27,26,24,.5));}'
+          css_new1 = '.foot-brand{display:flex;flex-direction:column;align-items:flex-start;gap:0;}\n.foot-brand img{width:186px;height:auto;display:block;opacity:1;filter:drop-shadow(0 10px 22px rgba(0,0,0,.5));}'
+          css_old2 = '.foot-brand img{width:158px;display:block;filter:brightness(0) invert(1);opacity:.96;}\n.foot-brand .fb-name{font-weight:800;font-size:15px;letter-spacing:.16em;color:#fff;margin-top:14px;}\n.foot-brand p{font-size:13.5px;line-height:1.7;color:var(--grey-500);margin-top:10px;max-width:300px;}'
+          css_new2 = '.foot-brand .fb-name{font-weight:800;font-size:17px;letter-spacing:.16em;color:#fff;margin:18px 0 0;}\n.foot-brand p{font-size:13.5px;line-height:1.72;color:var(--grey-300);margin-top:12px;max-width:330px;}'
+          rep('assets/css/style.css', [(css_old1, css_new1), (css_old2, css_new2)])
+          h_old = '      <div class="foot-brand">\n        <img src="assets/img/logo.webp" alt="InfiSource Global logo">\n        <div class="fb-name">INFISOURCE GLOBAL</div>\n        <p>Your workplace procurement and facility solutions partner - one accountable relationship across every category.</p>'
+          h_new = '      <div class="foot-brand">\n        <img src="assets/img/logo-mark.webp" alt="InfiSource Global logo">\n        <div class="fb-name">INFISOURCE GLOBAL</div>\n        <p>Your single, accountable partner for workplace procurement and facility solutions &mdash; across every category.</p>'
+          for f in ['index.html', 'about.html', 'services.html', 'contact.html', 'vendor.html']:
+              rep(f, [(h_old, h_new)])
+          print('footer brand updated')
+          PYEOF
+      - name: Commit updated files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then echo "No changes"; else
+            git commit -m "Rebuild footer brand: coloured logo, stacked layout, clearer tagline"
+            git push
+          fi
