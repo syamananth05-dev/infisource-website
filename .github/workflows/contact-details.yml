@@ -1,0 +1,40 @@
+name: Contact details
+on: push
+permissions:
+  contents: write
+jobs:
+  apply:
+    if: "github.actor != 'github-actions[bot]'"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply contact details
+        run: |
+          set -euo pipefail
+          python3 - <<'PYEOF'
+          import io
+          def rep(fn, pairs):
+              c = io.open(fn, encoding='utf-8').read()
+              for o, n in pairs:
+                  assert c.count(o) == 1, fn + ' MISS ' + o[:50]
+                  c = c.replace(o, n)
+              io.open(fn, 'w', encoding='utf-8').write(c)
+          FOOT_OLD = '\n'.join(['        <p>Email<br><a href="mailto:sales@infisourceglobal.in">sales@infisourceglobal.in</a></p>', '        <p>Location<br>Hyderabad, Telangana, India</p>'])
+          FOOT_NEW = '\n'.join(['        <p>Phone<br><a href="tel:+917702463889">+91 77024 63889</a></p>', '        <p>Email<br><a href="mailto:info@infisource.in">info@infisource.in</a></p>', '        <p>Address<br>5th Floor, Ayyappa Central, Plot Nos. 802 &amp; 803, Ayyappa Society, Khanamet, Madhapur, Hyderabad, Telangana &ndash; 500081</p>'])
+          WS = '<div class="c-row"><div class="c-ic"><svg viewBox="0 0 24 24" class="ic-svg"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a15 15 0 0 1 0 18 15 15 0 0 1 0-18z"/></svg></div><div><div class="c-label">Website</div><div class="c-val">www.infisourceglobal.in <span>(to be confirmed)</span></div></div></div>'
+          CARD = [('<div class="c-label">Phone</div><div class="c-val">+91 XXXXX XXXXX <span>(to be confirmed)</span></div>', '<div class="c-label">Phone</div><div class="c-val"><a href="tel:+917702463889">+91 77024 63889</a></div>'), ('<div class="c-label">Email</div><div class="c-val">sales@infisourceglobal.in <span>(to be confirmed)</span></div>', '<div class="c-label">Email</div><div class="c-val"><a href="mailto:info@infisource.in">info@infisource.in</a></div>'), (WS, ''), ('<div class="c-label">Address</div><div class="c-val">Hyderabad, Telangana, India <span>(registered / warehouse address)</span></div>', '<div class="c-label">Address</div><div class="c-val">5th Floor, Ayyappa Central, Plot Nos. 802 &amp; 803, Ayyappa Society, Khanamet, Madhapur, Hyderabad, Telangana &ndash; 500081, India</div>')]
+          CTA = [('<a href="mailto:sales@infisourceglobal.in" class="btn">Email sales@infisourceglobal.in</a>', '<a href="mailto:info@infisource.in" class="btn">Email info@infisource.in</a>')]
+          for f in ['index.html', 'about.html', 'services.html', 'contact.html', 'vendor.html']:
+              rep(f, [(FOOT_OLD, FOOT_NEW)])
+          rep('contact.html', CARD + [('email sales@infisourceglobal.in', 'email info@infisource.in')] + CTA)
+          print('contact details applied')
+          PYEOF
+      - name: Commit updated files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then echo "No changes"; else
+            git commit -m "Add real contact details (address, phone, email) to all pages"
+            git push
+          fi
