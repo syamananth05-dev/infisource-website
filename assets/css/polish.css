@@ -83,3 +83,13 @@ html[data-theme="dark"] .theme-btn .i-moon{display:block;}
   .drawer nav{grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;}
   .drawer nav a{font-size:15px;padding:14px 15px;}
 }
+
+/* ---------- header brand: a touch larger / more dominant ---------- */
+.brand{font-size:27px;}
+.brand img{width:58px;height:58px;}
+@media(max-width:520px){.brand{font-size:20px;}.brand img{width:44px;height:44px;}}
+@media(max-width:380px){.brand{font-size:17px;}.brand img{width:38px;height:38px;}}
+
+/* ---------- header fit with the larger brand ---------- */
+@media(max-width:760px){.nav>.btn{display:none;}}
+@media(max-width:340px){.brand{font-size:16px;}.brand img{width:34px;height:34px;}.theme-btn{width:32px;height:32px;}.burger{width:36px;height:36px;}}
