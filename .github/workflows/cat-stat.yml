@@ -1,0 +1,32 @@
+name: Categories stat
+on: push
+permissions:
+  contents: write
+jobs:
+  apply:
+    if: "github.actor != 'github-actions[bot]'"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Update categories stat
+        run: |
+          set -euo pipefail
+          python3 - <<'PYEOF'
+          import io
+          old = '<b>12+</b><span>Product Categories</span>'
+          new = '<b>18</b><span>Product Categories</span>'
+          for f in ['index.html', 'about.html']:
+              c = io.open(f, encoding='utf-8').read()
+              assert c.count(old) == 1, f
+              io.open(f, 'w', encoding='utf-8').write(c.replace(old, new))
+              print('updated', f)
+          PYEOF
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then echo "No changes"; else
+            git commit -m "Update categories stat from 12+ to 18"
+            git push
+          fi
