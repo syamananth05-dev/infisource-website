@@ -114,3 +114,6 @@ html[data-theme="dark"] .theme-btn .i-moon{display:block;}
 }
 @media(min-width:1024px) and (max-width:1180px){.drawer nav a{font-size:14.5px;padding:20px 14px;}}
 @keyframes cardIn{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:none;}}
+
+/* ---------- brand name is mixed case now: tighten tracking ---------- */
+.foot-brand .fb-name{letter-spacing:.04em;}
