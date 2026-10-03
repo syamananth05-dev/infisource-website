@@ -117,3 +117,6 @@ html[data-theme="dark"] .theme-btn .i-moon{display:block;}
 
 /* ---------- brand name is mixed case now: tighten tracking ---------- */
 .foot-brand .fb-name{letter-spacing:.04em;}
+
+/* ---------- no drop cap: first letter renders normally ---------- */
+.about-copy>p:first-of-type::first-letter{font-size:inherit;font-weight:inherit;line-height:inherit;color:inherit;float:none;padding:0;}
